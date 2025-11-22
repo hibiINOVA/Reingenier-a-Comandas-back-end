@@ -17,20 +17,20 @@ class Router
     // Define un array que contiene las rutas y su configuración
     private static $routes = [
         "GET" => [
-            "viewIngredients" =>[MenuController::class, "viewIngredients", 0],
-            "viewOrders" => [OrderController::class, "viewOrders", 0],
-            "viewOrder" => [OrderController::class, "viewOrder", 0],
-            "lastOrder" => [OrderController::class, "lastOrder", 0],
-            "bestSeller" => [GraficsController::class, "bestSeller", 0]
+            "viewIngredients" =>[MenuController::class, "viewIngredients", 1],
+            "viewOrders" => [OrderController::class, "viewOrders", 1],
+            "viewOrder" => [OrderController::class, "viewOrder", 1],
+            "lastOrder" => [OrderController::class, "lastOrder", 1],
+            "bestSeller" => [GraficsController::class, "bestSeller", 1]
         ],
         "POST" => [
             "signin" => [AuthController::class, "sign_in", 0],
             "signup" => [AuthController::class, "sign_up", 0],
-            "createOrder" => [OrderController::class, "createOrder", 0],
+            "createOrder" => [OrderController::class, "createOrder", 1],
             
         ],
         "PUT" => [
-            "updateStatus" => [OrderController::class, 'updateStatus', 0]
+            "updateStatus" => [OrderController::class, 'updateStatus', 1]
         ],
         "DELETE" => [
         ]
@@ -49,10 +49,10 @@ class Router
             // Realiza verificaciones de autenticación basadas en los encabezados proporcionados
             if (!$type_auth) {
                 // Verifica la existencia y validez del encabezado 'Simpleauthb2b'
-                if (!isset($HEADERS['Simple']) || $HEADERS['Simple'] !== md5('Aqui va tu contraseña (Yo la encripte en MD5)')) throw new exc('006');
+                if (!isset($HEADERS['simple']) || $HEADERS['simple'] !== md5('Aqui va tu contraseña (Yo la encripte en MD5)')) throw new exc('006');
             } else {
                 // Verifica la existencia y validez del encabezado 'Authorization' utilizando Jwt::Check
-                if (!isset($HEADERS['Authorization']) || !Jwt::Check(@$HEADERS['Authorization'])) throw new exc('006');
+                if (!isset($HEADERS['authorization']) || !Jwt::Check(@$HEADERS['authorization'])) throw new exc('006');
             }
 
             // Obtiene el controlador y el método asociado a la URI solicitada
