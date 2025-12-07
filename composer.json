@@ -2,9 +2,9 @@
     "name": "lizet/comandas",
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Config\\": "config/",
-            "Router\\": "router/" 
+        "App\\": "app/",
+        "Config\\": "Config/",
+        "Router\\": "Router/"
         }
     },
     "authors": [
